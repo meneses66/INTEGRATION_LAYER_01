@@ -4,7 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://ammintegrations.scm.azurewebsites.net:443"
+      "applicationUrl": "http://localhost:25344",
+      "sslPort": 44337
     }
   },
   "profiles": {
