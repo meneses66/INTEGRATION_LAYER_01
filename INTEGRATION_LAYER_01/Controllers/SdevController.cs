@@ -2,10 +2,6 @@
 using INTEGRATION_LAYER_01.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace INTEGRATION_LAYER_01.Controllers
 {
@@ -32,9 +28,9 @@ namespace INTEGRATION_LAYER_01.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var person = _sdevService.FindById(id);
-            if (person == null) return NotFound();
-            return Ok(person);
+            var sdev = _sdevService.FindById(id);
+            if (sdev == null) return NotFound();
+            return Ok(sdev);
         }
 
         [HttpPost]
