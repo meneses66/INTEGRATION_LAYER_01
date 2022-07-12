@@ -4,8 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://node107349-ammtstnet01.jelastic.saveincloud.net",
-      "sslPort": 13639
+      "applicationUrl": "https://ammintegrations.scm.azurewebsites.net:443"
     }
   },
   "profiles": {
