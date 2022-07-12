@@ -1,16 +1,13 @@
+using INTEGRATION_LAYER_01.Model.Context;
+using INTEGRATION_LAYER_01.Services;
+using INTEGRATION_LAYER_01.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace INTEGRATION_LAYER_01
 {
@@ -28,6 +25,15 @@ namespace INTEGRATION_LAYER_01
         {
 
             services.AddControllers();
+
+            var connection = Configuration["MySQLConnection:MySQLConnectionString"];
+            
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+
+            //INCLUSÃO DE DEPENDÊNCIAS:
+            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<ISDevService, SdevServiceImplementation>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "INTEGRATION_LAYER_01", Version = "v1" });
