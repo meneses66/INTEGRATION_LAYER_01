@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://node107349-ammtstnet01.jelastic.saveincloud.net:443",
+      "applicationUrl": "http://node107349-ammtstnet01.jelastic.saveincloud.net",
       "sslPort": 13639
     }
   },
@@ -22,7 +22,7 @@
       "dotnetRunMessages": "true",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://node107349-ammtstnet01.jelastic.saveincloud.net:443",
+      "applicationUrl": "http://node107349-ammtstnet01.jelastic.saveincloud.net",
       "sslPort": 13639,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
