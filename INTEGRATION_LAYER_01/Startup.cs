@@ -1,6 +1,6 @@
 using INTEGRATION_LAYER_01.Model.Context;
-using INTEGRATION_LAYER_01.Services;
-using INTEGRATION_LAYER_01.Services.Implementations;
+using INTEGRATION_LAYER_01.Business;
+using INTEGRATION_LAYER_01.Business.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using INTEGRATION_LAYER_01.Repository.Implementations;
+using INTEGRATION_LAYER_01.Repository;
+using INTEGRATION_LAYER_01.Repository.Generic;
 
 namespace INTEGRATION_LAYER_01
 {
@@ -30,9 +33,17 @@ namespace INTEGRATION_LAYER_01
             
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 
+            //Versionamento de API
+            services.AddApiVersioning();
+
             //INCLUSÃO DE DEPENDÊNCIAS:
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
-            services.AddScoped<ISDevService, SdevServiceImplementation>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            services.AddScoped<ISDevBusiness, SdevBusinessImplementation>();
+            services.AddScoped<IRacaBusiness, RacaBusinessImplementation>();
+
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+            services.AddScoped<ISDevRepository, SdevRepositoryImplementation>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             services.AddSwaggerGen(c =>
             {

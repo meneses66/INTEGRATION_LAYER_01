@@ -1,12 +1,10 @@
 ﻿using INTEGRATION_LAYER_01.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace INTEGRATION_LAYER_01.Services.Implementations
+namespace INTEGRATION_LAYER_01.Business.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonBusinessImplementation : IPersonBusiness
     {
         public Person Create(Person person)
         {

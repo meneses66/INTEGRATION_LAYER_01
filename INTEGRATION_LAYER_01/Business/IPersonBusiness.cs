@@ -1,9 +1,9 @@
 ﻿using INTEGRATION_LAYER_01.Model;
 using System.Collections.Generic;
 
-namespace INTEGRATION_LAYER_01.Services
+namespace INTEGRATION_LAYER_01.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
          Person Create(Person person);
 

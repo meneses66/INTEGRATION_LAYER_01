@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace INTEGRATION_LAYER_01.Services.Implementations
+namespace INTEGRATION_LAYER_01.Repository.Implementations
 {
-    public class SdevServiceImplementation : ISDevService
+    public class SdevRepositoryImplementation : ISDevRepository
     {
 
         private MySQLContext _context;
-        public SdevServiceImplementation(MySQLContext context)
+        public SdevRepositoryImplementation(MySQLContext context)
         {
             _context = context;
         }
@@ -78,9 +78,10 @@ namespace INTEGRATION_LAYER_01.Services.Implementations
             return sdev;
         }
 
-        private bool Exists(long id)
+        public bool Exists(long id)
         {
             return _context.SDevs.Any(p => p.id.Equals(id));
         }
+
     }
 }

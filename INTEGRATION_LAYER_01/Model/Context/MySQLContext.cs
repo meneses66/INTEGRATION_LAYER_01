@@ -13,5 +13,7 @@ namespace INTEGRATION_LAYER_01.Model.Context
 
         public DbSet<Sdev> SDevs { get; set; }
 
+        public DbSet<Raca> Racas { get; set; }
+
     }
 }

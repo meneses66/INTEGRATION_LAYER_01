@@ -1,9 +1,9 @@
 ﻿using INTEGRATION_LAYER_01.Model;
 using System.Collections.Generic;
 
-namespace INTEGRATION_LAYER_01.Services
+namespace INTEGRATION_LAYER_01.Repository
 {
-    public interface ISDevService
+    public interface ISDevRepository
     {
          Sdev Create(Sdev sdev);
 
@@ -14,6 +14,8 @@ namespace INTEGRATION_LAYER_01.Services
         Sdev Update(Sdev sdev);
 
         void Delete(long id);
+
+        bool Exists(long id);
 
     }
 }

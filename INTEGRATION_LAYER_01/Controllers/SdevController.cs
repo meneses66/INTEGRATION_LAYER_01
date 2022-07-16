@@ -1,34 +1,35 @@
 ﻿using INTEGRATION_LAYER_01.Model;
-using INTEGRATION_LAYER_01.Services;
+using INTEGRATION_LAYER_01.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace INTEGRATION_LAYER_01.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class SdevController : ControllerBase
     {
         private readonly ILogger<SdevController> _logger;
 
-        private ISDevService _sdevService;
+        private ISDevBusiness _sdevBusiness;
 
-        public SdevController(ILogger<SdevController> logger, ISDevService sdevService)
+        public SdevController(ILogger<SdevController> logger, ISDevBusiness sdevBusiness)
         {
             _logger = logger;
-            _sdevService = sdevService;
+            _sdevBusiness = sdevBusiness;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_sdevService.FindAll());
+            return Ok(_sdevBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var sdev = _sdevService.FindById(id);
+            var sdev = _sdevBusiness.FindById(id);
             if (sdev == null) return NotFound();
             return Ok(sdev);
         }
@@ -37,20 +38,20 @@ namespace INTEGRATION_LAYER_01.Controllers
         public IActionResult Post([FromBody] Sdev sdev)
         {
             if (sdev == null) return BadRequest();
-            return Ok(_sdevService.Create(sdev));
+            return Ok(_sdevBusiness.Create(sdev));
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] Sdev sdev)
         {
             if (sdev == null) return BadRequest();
-            return Ok(_sdevService.Update(sdev));
+            return Ok(_sdevBusiness.Update(sdev));
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _sdevService.Delete(id);
+            _sdevBusiness.Delete(id);
             return NoContent();
         }
 
